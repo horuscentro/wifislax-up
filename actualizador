@@ -1,0 +1,27 @@
+#!/bin/sh
+sel=$(zenity --file-selection --directory --title="Choose rsync source directory" --filename=$PWD/);
+echo "-----"
+echo $sel
+cd $sel
+echo $PWD
+FILES=*
+
+direc=$PWD
+count=0
+for f2 in $FILES
+do
+        count=$[$count +1]      
+done
+count2=0
+for f in $FILES
+do
+
+        cd $direc
+        count2=$[$count2 +1]
+        echo "Progreso $count2/$count> $f <----" 
+        xterm -title $f -e ./$f  
+        cd $direc
+done
+echo "Actualizacion Terminada"
+
+
